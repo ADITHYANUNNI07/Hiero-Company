@@ -3,10 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hiero_company/domain/core/colors/colors.dart';
-import 'package:hiero_company/domain/core/constants/constants.dart';
+import 'package:hiero_company/core/colors/colors.dart';
+import 'package:hiero_company/core/constants/constants.dart';
 import 'package:hiero_company/presentation/home/home_screen.dart';
-import 'package:hiero_company/presentation/post/add_post_screen.dart';
+import 'package:hiero_company/presentation/job/add%20job/add_job.dart';
 
 class PostJoborInternScrn extends StatelessWidget {
   const PostJoborInternScrn({super.key});
@@ -32,7 +32,8 @@ class PostJoborInternScrn extends StatelessWidget {
                           onTap: () {
                             Navigator.of(context).push(
                               MaterialPageRoute(
-                                  builder: (context) => AddJobInternPostScrn()),
+                                  builder: (context) =>
+                                      const AddJobInternPostScrn()),
                             );
                           },
                           child: const CircleAvatar(

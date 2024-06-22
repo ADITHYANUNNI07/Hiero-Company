@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:hiero_company/domain/core/colors/colors.dart';
-import 'package:hiero_company/domain/core/constants/constants.dart';
-import 'package:hiero_company/domain/core/provider/provider.dart';
-import 'package:hiero_company/domain/core/widgets/textfields.dart';
+import 'package:hiero_company/core/colors/colors.dart';
+import 'package:hiero_company/core/constants/constants.dart';
+import 'package:hiero_company/core/provider/provider.dart';
+import 'package:hiero_company/core/widgets/textfields.dart';
 import 'package:provider/provider.dart';
 
 class TopColorSafeArea extends StatelessWidget {
@@ -38,6 +38,8 @@ class TextFormWidget extends StatelessWidget {
     this.isNolabel = false,
     this.isSearchFilter = false,
     this.radiusMessage,
+    this.focusNode,
+    this.widget,
   });
   final String? label;
   final String? hintText;
@@ -55,6 +57,8 @@ class TextFormWidget extends StatelessWidget {
   final bool isNolabel;
   final bool isSearchFilter;
   final double? radiusMessage;
+  final FocusNode? focusNode;
+  final Widget? widget;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -62,10 +66,16 @@ class TextFormWidget extends StatelessWidget {
       children: [
         !isNolabel ? sizedBox15H : Container(),
         !isNolabel
-            ? Text(
-                label ?? '',
-                style:
-                    const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+            ? Row(
+                children: [
+                  Text(
+                    label ?? '',
+                    style: const TextStyle(
+                        fontSize: 18, fontWeight: FontWeight.w600),
+                  ),
+                  const Spacer(),
+                  widget ?? Container()
+                ],
               )
             : Container(),
         !isNolabel ? sizedBox10H : Container(),
@@ -76,6 +86,7 @@ class TextFormWidget extends StatelessWidget {
           obscureText: obscurebool,
           controller: controller,
           maxLines: maxLines,
+          focusNode: focusNode,
           decoration: InputDecoration(
             suffix: suffix,
             filled: true,

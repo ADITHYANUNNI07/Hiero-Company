@@ -2,16 +2,27 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hiero_company/domain/core/colors/colors.dart';
-import 'package:hiero_company/domain/core/provider/provider.dart';
+import 'package:hiero_company/application/auth/auth_bloc.dart';
+import 'package:hiero_company/core/colors/colors.dart';
+import 'package:hiero_company/core/provider/provider.dart';
+import 'package:hiero_company/domain/services/auth/auth_repository.dart';
+import 'package:hiero_company/infrastructure/helper/sharedpreference.dart';
 import 'package:hiero_company/presentation/splash/splash_screen.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(const MyApp());
+  runApp(
+    MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => AuthBloc(AuthRepository()))
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -29,6 +40,15 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => JobFilterProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => LocationService(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => SharedPreferenceClass(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => SkillProvider(),
         )
       ],
       child: GetMaterialApp(

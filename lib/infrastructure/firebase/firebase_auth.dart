@@ -1,5 +1,13 @@
+// ignore_for_file: unnecessary_null_comparison, use_build_context_synchronously
+
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:hiero_company/application/auth/auth_bloc.dart';
+import 'package:hiero_company/core/notification/notification.dart';
 import 'package:hiero_company/infrastructure/models/usermodels.dart';
 
 String verificationID = '';
@@ -8,58 +16,53 @@ class AuthServiceClass {
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
 
 //login
-  Future loginUserAccount(String email, String password) async {
+  Future loginUserAccount(
+      CompanyModel companyModel, BuildContext context) async {
     try {
       User user = (await firebaseAuth.signInWithEmailAndPassword(
-              email: email, password: password))
+              email: companyModel.email, password: companyModel.password))
           .user!;
-      // ignore: unnecessary_null_comparison
       if (user != null) {
+        context.read<AuthBloc>().add(AuthEvent.logIn(companyModel));
         return true;
       }
     } on FirebaseAuthException catch (e) {
+      if (e.message ==
+          'The supplied auth credential is incorrect, malformed or has expired.') {
+        await NotificationClass.snakBarError(
+            'E-mail and Password is incorrect 😖', context);
+      } else {
+        await NotificationClass.snakBarWarning('${e.message} 😖', context);
+      }
+      log(e.message.toString());
       return e.message;
     }
   }
 
 //signUp
-  Future createUserAccount(UserModel userModel) async {
+  Future createUserAccount(
+      CompanyModel companyModel, BuildContext context) async {
     try {
       User user = (await firebaseAuth.createUserWithEmailAndPassword(
-              email: userModel.email, password: userModel.password))
+              email: companyModel.email, password: companyModel.password))
           .user!;
-      // ignore: unnecessary_null_comparison
       if (user != null) {
-        print('truecccccccc');
-        //call our database service to update the user data
-        // await DatabaseService(uid: user.uid)
-        //     .savingUserData(fullname, email, phone, adKey);
+        context.read<AuthBloc>().add(AuthEvent.signUp(companyModel));
         return true;
       }
     } on FirebaseAuthException catch (e) {
+      await NotificationClass.snakBarWarning('${e.message}😖', context);
       return e.message;
     }
   }
-  // final GetxSnackBarControllerClass controller =
-  //  Get.put(GetxSnackBarControllerClass());
-
-  //final SharedpreferenceClass sharedController =
-  //   Get.put(SharedpreferenceClass());
 
   Future phoneNumberAuth(String phoneNumber) async {
-    // loginScrnGetxController.isLoadingFN(isLoad: true);
     firebaseAuth.verifyPhoneNumber(
       phoneNumber: '+91$phoneNumber',
       verificationCompleted: (phoneAuthCredential) async {
         await firebaseAuth.signInWithCredential(phoneAuthCredential);
       },
-      verificationFailed: (FirebaseAuthException e) {
-        // loginScrnGetxController.isLoadingFN(isLoad: false);
-        // controller.showSnackBar(
-        //     title: 'Phone Number Signin Failed',
-        //     content: e.toString(),
-        //     errorcolor: colorRed);
-      },
+      verificationFailed: (FirebaseAuthException e) {},
       codeSent: (verificationId, forceResendingToken) {
         verificationID = verificationId;
         // loginScrnGetxController.isLoadingFN(isLoad: false);

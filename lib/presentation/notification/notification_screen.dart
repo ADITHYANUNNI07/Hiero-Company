@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hiero_company/domain/core/colors/colors.dart';
-import 'package:hiero_company/domain/core/constants/constants.dart';
-import 'package:hiero_company/domain/core/widgets/widget.dart';
+import 'package:hiero_company/core/colors/colors.dart';
+import 'package:hiero_company/core/constants/constants.dart';
+import 'package:hiero_company/core/widgets/widget.dart';
 
 class NotificationScrn extends StatelessWidget {
   const NotificationScrn({super.key});

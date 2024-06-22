@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hiero_company/domain/core/colors/colors.dart';
-import 'package:hiero_company/domain/core/widgets/widget.dart';
+import 'package:hiero_company/core/colors/colors.dart';
+import 'package:hiero_company/core/widgets/widget.dart';
 import 'package:hiero_company/presentation/chat/chat_screen.dart';
 import 'package:hiero_company/presentation/home/home_screen.dart';
 import 'package:hiero_company/presentation/internship/internship_screen.dart';

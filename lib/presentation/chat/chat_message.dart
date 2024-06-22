@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:hiero_company/domain/core/colors/colors.dart';
-import 'package:hiero_company/domain/core/constants/constants.dart';
-import 'package:hiero_company/domain/core/widgets/widget.dart';
+import 'package:hiero_company/core/colors/colors.dart';
+import 'package:hiero_company/core/constants/constants.dart';
+import 'package:hiero_company/core/widgets/widget.dart';
 
 class ChatMessageScrn extends StatelessWidget {
   const ChatMessageScrn({super.key, this.isUser = false});

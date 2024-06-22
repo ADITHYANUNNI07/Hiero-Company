@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hiero_company/domain/core/colors/colors.dart';
-import 'package:hiero_company/domain/core/constants/constants.dart';
-import 'package:hiero_company/domain/core/widgets/widget.dart';
+import 'package:hiero_company/core/colors/colors.dart';
+import 'package:hiero_company/core/constants/constants.dart';
+import 'package:hiero_company/core/widgets/widget.dart';
 import 'package:hiero_company/presentation/home/home_screen.dart';
 
 class ProfileScrn extends StatelessWidget {

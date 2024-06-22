@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hiero_company/domain/core/colors/colors.dart';
-import 'package:hiero_company/domain/core/widgets/widget.dart';
+import 'package:hiero_company/core/colors/colors.dart';
+import 'package:hiero_company/core/widgets/widget.dart';
 import 'package:hiero_company/presentation/login/login_screen.dart';
 import 'package:hiero_company/presentation/signup/signup_screen.dart';
 import 'package:liquid_swipe/liquid_swipe.dart';
