@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hiero_company/domain/services/auth/auth_repository.dart';
@@ -16,9 +18,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         final result = await authRepository.signup(event.companyModel);
         if (result == 'success') {
           emit(const AuthState.loggedIn(''));
-        } else {
-          emit(AuthState.error(result));
         }
+        emit(AuthState.error(result));
       } catch (e) {
         emit(AuthState.error(e.toString()));
       }

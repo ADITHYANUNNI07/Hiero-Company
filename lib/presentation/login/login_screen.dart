@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -33,7 +35,13 @@ class LoginScreen extends StatelessWidget {
                     'Signup Successflly 👋😎', context);
               },
               error: (message) {
-                NotificationClass.snakBarError(message, context);
+                log('message:::$message');
+                NotificationClass.snakBarError(
+                    message ==
+                            "rpc error: code = Unknown desc = email doesn't exist"
+                        ? "E-mail and Password is Incorrect. 🔐"
+                        : message,
+                    context);
               },
             );
           },

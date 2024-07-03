@@ -116,7 +116,7 @@ class CompanyMessageTile extends StatelessWidget {
                               const CircleAvatar(
                                 radius: 30,
                                 backgroundImage:
-                                    AssetImage('assets/images/th.jpeg'),
+                                    AssetImage(AppImage.companyPic),
                               ),
                               sizedBox5W,
                               SizedBox(
@@ -194,7 +194,7 @@ class PersonalMessageTile extends StatelessWidget {
                   children: [
                     const CircleAvatar(
                       radius: 30,
-                      backgroundImage: AssetImage('assets/images/profile.jpg'),
+                      backgroundImage: AssetImage(AppImage.userPic),
                     ),
                     sizedBox5W,
                     SizedBox(

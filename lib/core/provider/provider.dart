@@ -6,7 +6,7 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:hiero_company/core/widgets/widget.dart';
 
-class SignUpProviderModel with ChangeNotifier {
+class SignUpProvider with ChangeNotifier {
   bool? _isFirstNameValid;
   bool? _isEmailValid;
   bool? _isPasswordValid;
@@ -23,6 +23,8 @@ class SignUpProviderModel with ChangeNotifier {
   double _selectedSalary = 0.0;
   String _experienceLevel = 'Entery-level';
   String _jobOrIntern = 'Job';
+  bool? _isopportunities;
+  bool? _isyearofexp;
   bool _isJob = true;
   bool? get isFirstNameValid => _isFirstNameValid;
   bool? get isEmailValid => _isEmailValid;
@@ -40,6 +42,8 @@ class SignUpProviderModel with ChangeNotifier {
   String get experienceLevel => _experienceLevel;
   String get jobOrIntern => _jobOrIntern;
   bool get isJob => _isJob;
+  bool? get isopportunities => _isopportunities;
+  bool? get isyearofexp => _isyearofexp;
   void setJoborIntern(String jobOrIntern) {
     _jobOrIntern = jobOrIntern;
     jobOrIntern == 'Job' ? _isJob = true : _isJob = false;
@@ -91,6 +95,28 @@ class SignUpProviderModel with ChangeNotifier {
     notifyListeners();
   }
 
+  void validateOpportunities(String opportunities) {
+    if (opportunities.isNotEmpty &&
+        opportunities.contains(RegExp(r'[0-9]')) &&
+        !opportunities.contains(RegExp(r'[!@#\$%^&*(),.?":{}|<>]'))) {
+      _isopportunities = true;
+    } else {
+      _isopportunities = false;
+    }
+    notifyListeners();
+  }
+
+  void validateyearofexp(String yearofexp) {
+    if (yearofexp.isNotEmpty &&
+        yearofexp.contains(RegExp(r'[0-9]')) &&
+        !yearofexp.contains(RegExp(r'[!@#\$%^&*(),.?":{}|<>]'))) {
+      _isyearofexp = true;
+    } else {
+      _isyearofexp = false;
+    }
+    notifyListeners();
+  }
+
   void validateEducationQualification(String qualification) {
     if (qualification.isNotEmpty &&
         !qualification.contains(RegExp(r'[0-9]')) &&
@@ -112,6 +138,29 @@ class SignUpProviderModel with ChangeNotifier {
     } else {
       _isIndustry = false;
     }
+    notifyListeners();
+  }
+
+  void clearAllFields() {
+    _isFirstNameValid = null;
+    _isEmailValid = null;
+    _isPasswordValid = null;
+    _isPhoneValid = null;
+    _isAddressValid = null;
+    _isDOBValid = null;
+    _isBioValid = null;
+    _isIndustry = null;
+    _companySize = null;
+    _isWebsiteValid = null;
+    _islocation = null;
+    _isabout = null;
+    _isEducationLevel = null;
+    _selectedSalary = 0.0;
+    _experienceLevel = 'Entery-level';
+    _jobOrIntern = 'Job';
+    _isopportunities = null;
+    _isyearofexp = null;
+    _isJob = true;
     notifyListeners();
   }
 
@@ -235,7 +284,7 @@ class SignUpProviderModel with ChangeNotifier {
 
   void validateAddress(String address) {
     if (address.trim().length > 6 &&
-        !address.contains(RegExp(r'[!@#\$%^&*()?":{}|<>]'))) {
+        !address.contains(RegExp(r'[!@#\$%^&*()?"{}|<>]'))) {
       _isAddressValid = true;
     } else {
       _isAddressValid = false;
@@ -254,7 +303,7 @@ class SignUpProviderModel with ChangeNotifier {
 
   void validateBio(String bio) {
     if (bio.trim().length > 6 &&
-        !bio.contains(RegExp(r'[!@#\$%^&*().?":{}|<>]'))) {
+        !bio.contains(RegExp(r'[!@#\$%^&*()?"{}|<>]'))) {
       _isBioValid = true;
     } else {
       _isBioValid = false;
@@ -264,7 +313,7 @@ class SignUpProviderModel with ChangeNotifier {
 
   void validateAbout(String about) {
     if (about.trim().length > 10 &&
-        !about.contains(RegExp(r'[!@#\$%^&*()?":{}|<>]'))) {
+        !about.contains(RegExp(r'[!@#\$%^&*{}|<>]'))) {
       _isabout = true;
     } else {
       _isabout = false;

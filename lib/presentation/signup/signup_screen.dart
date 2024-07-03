@@ -137,7 +137,7 @@ Widget buildSignup(BuildContext context) {
     child: SingleChildScrollView(
       child: Form(
         key: signupformKey,
-        child: Consumer<SignUpProviderModel>(
+        child: Consumer<SignUpProvider>(
           builder: (context, formPro, child) {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,

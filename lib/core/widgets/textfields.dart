@@ -13,7 +13,7 @@ import 'package:flutter_typeahead/flutter_typeahead.dart';
 class TextFieldClass {
   Widget buildCompanymailField(
       BuildContext context, TextEditingController controller) {
-    return Consumer<SignUpProviderModel>(
+    return Consumer<SignUpProvider>(
       builder: (context, model, child) => TextFormWidget(
         controller: controller,
         keyboardType: TextInputType.emailAddress,
@@ -45,7 +45,7 @@ class TextFieldClass {
 
   Widget buildPasswordField(
       BuildContext context, TextEditingController controller) {
-    return Consumer<SignUpProviderModel>(
+    return Consumer<SignUpProvider>(
       builder: (context, model, child) => TextFormWidget(
         controller: controller,
         keyboardType: TextInputType.visiblePassword,
@@ -80,7 +80,7 @@ class TextFieldClass {
 
   Widget buildCompanyNameField(
       BuildContext context, TextEditingController profileNameController) {
-    return Consumer<SignUpProviderModel>(
+    return Consumer<SignUpProvider>(
       builder: (context, model, child) => TextFormWidget(
         controller: profileNameController,
         label: 'Company Name',
@@ -115,7 +115,7 @@ class TextFieldClass {
 
   Widget buildContactNumberField(
       BuildContext context, TextEditingController controller) {
-    return Consumer<SignUpProviderModel>(
+    return Consumer<SignUpProvider>(
       builder: (context, model, child) => TextFormWidget(
         controller: controller,
         keyboardType: TextInputType.phone,
@@ -149,7 +149,7 @@ class TextFieldClass {
 
   Widget buildAddressField(
       BuildContext context, TextEditingController controller) {
-    return Consumer<SignUpProviderModel>(
+    return Consumer<SignUpProvider>(
       builder: (context, model, child) => TextFormWidget(
         maxLines: 8,
         label: 'Headquarters Address',
@@ -182,7 +182,7 @@ class TextFieldClass {
 
   Widget buildAboutField(
       BuildContext context, TextEditingController controller) {
-    return Consumer<SignUpProviderModel>(
+    return Consumer<SignUpProvider>(
       builder: (context, model, child) => TextFormWidget(
         maxLines: 8,
         label: 'About',
@@ -215,7 +215,7 @@ class TextFieldClass {
 
   Widget buildProfileField(
       BuildContext context, TextEditingController controller) {
-    return Consumer<SignUpProviderModel>(
+    return Consumer<SignUpProvider>(
       builder: (context, model, child) => TextFormWidget(
         controller: controller,
         label: 'Profile',
@@ -247,7 +247,7 @@ class TextFieldClass {
   Widget buildLocationField(
       BuildContext context, TextEditingController controller) {
     return Consumer<LocationService>(
-      builder: (context, modellocation, child) => Consumer<SignUpProviderModel>(
+      builder: (context, modellocation, child) => Consumer<SignUpProvider>(
         builder: (context, model, child) => TextFormWidget(
           controller:
               modellocation.currentCity.isEmpty ? controller : controller,
@@ -291,7 +291,7 @@ class TextFieldClass {
 
   Widget buildCompanySizeField(
       BuildContext context, TextEditingController controller) {
-    return Consumer<SignUpProviderModel>(
+    return Consumer<SignUpProvider>(
       builder: (context, model, child) => TextFormWidget(
         controller: controller,
         label: 'Company Size',
@@ -321,7 +321,7 @@ class TextFieldClass {
 
   Widget buildIndustryField(
       BuildContext context, TextEditingController controller) {
-    return Consumer<SignUpProviderModel>(
+    return Consumer<SignUpProvider>(
       builder: (context, model, child) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -365,7 +365,7 @@ class TextFieldClass {
 
   Widget buildWebsiteLinkField(
       BuildContext context, TextEditingController controller) {
-    return Consumer<SignUpProviderModel>(
+    return Consumer<SignUpProvider>(
       builder: (context, model, child) => TextFormWidget(
         controller: controller,
         label: 'Company Website',
@@ -403,7 +403,7 @@ class TextFieldClass {
 //=============================================ADD POST==============================================
   Widget buildProfileNameField(
       BuildContext context, TextEditingController profileNameController) {
-    return Consumer<SignUpProviderModel>(
+    return Consumer<SignUpProvider>(
       builder: (context, model, child) => TextFormWidget(
         controller: profileNameController,
         label: 'Profile',
@@ -443,7 +443,7 @@ class TextFieldClass {
   ];
   Widget buildexperienceLevelField(
       BuildContext context, TextEditingController controller) {
-    return Consumer<SignUpProviderModel>(
+    return Consumer<SignUpProvider>(
       builder: (context, jobTypeProvider, child) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -492,7 +492,7 @@ class TextFieldClass {
   final List<String> interOrJob = ['Job', 'Internship'];
   Widget buildJoborInternField(
       BuildContext context, TextEditingController controller) {
-    return Consumer<SignUpProviderModel>(
+    return Consumer<SignUpProvider>(
       builder: (context, jobTypeProvider, child) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -540,7 +540,7 @@ class TextFieldClass {
 
   Widget buildAboutCompanyField(
       BuildContext context, TextEditingController controller) {
-    return Consumer<SignUpProviderModel>(
+    return Consumer<SignUpProvider>(
       builder: (context, model, child) => TextFormWidget(
         maxLines: 8,
         label: model.isJob ? 'Job Description' : 'Internship Description',
@@ -559,7 +559,7 @@ class TextFieldClass {
         onChanged: (value) => model.validateAddress(value!),
         validator: (value) {
           if (value!.trim().length > 6 &&
-              !value.contains(RegExp(r'[!@#\$%^&*().?":{}|<>]'))) {
+              !value.contains(RegExp(r'[!@#\$%^&*()?"{}|<>]'))) {
             return null;
           } else if (value.isEmpty) {
             return 'Please enter the Description';
@@ -573,7 +573,7 @@ class TextFieldClass {
 
   Widget buildRequirementField(
       BuildContext context, TextEditingController controller) {
-    return Consumer<SignUpProviderModel>(
+    return Consumer<SignUpProvider>(
       builder: (context, model, child) => TextFormWidget(
         maxLines: 8,
         label: model.isJob ? 'Job Requirements' : 'Internship Requirements',
@@ -592,7 +592,7 @@ class TextFieldClass {
         onChanged: (value) => model.validateBio(value!),
         validator: (value) {
           if (value!.trim().length > 6 &&
-              !value.contains(RegExp(r'[!@#\$%^&*().?":{}|<>]'))) {
+              !value.contains(RegExp(r'[!@#\$%^&*()?"{}|<>]'))) {
             return null;
           } else if (value.isEmpty) {
             return 'Please enter the Requirements';
@@ -606,7 +606,73 @@ class TextFieldClass {
 
   Widget buildStartingDateField(
       BuildContext context, TextEditingController dateEditingConntroller) {
-    return Consumer<SignUpProviderModel>(
+    return Consumer<SignUpProvider>(
+      builder: (context, model, child) => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          sizedBox15H,
+          const Text(
+            'Starting Date',
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+          ),
+          sizedBox10H,
+          TextFormField(
+              initialValue: null,
+              readOnly: true,
+              controller: dateEditingConntroller,
+              decoration: InputDecoration(
+                filled: true,
+                suffixIcon: model.isDOBvalid == null
+                    ? null
+                    : model.isDOBvalid == false
+                        ? const Icon(
+                            Icons.cancel,
+                            color: colorRed,
+                          )
+                        : const Icon(
+                            Icons.check_circle,
+                            color: colorGreen,
+                          ),
+                fillColor: colorWhite,
+                prefixIcon: const Icon(Icons.calendar_month),
+                labelText: 'Starting Date',
+                focusedBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: colorApp,
+                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(5)),
+                ),
+                border: const OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(5))),
+              ),
+              onTap: () async {
+                var date = await showDatePicker(
+                    context: context,
+                    initialDate: DateTime.now(),
+                    firstDate: DateTime.now(),
+                    lastDate: DateTime(2100));
+                if (date != null) {
+                  dateEditingConntroller.text =
+                      DateFormat('dd MMM yyyy').format(date);
+                }
+              },
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return "Please Select Starting Date";
+                } else {
+                  return null;
+                }
+              },
+              onChanged: (value) =>
+                  model.validateDOB(dateEditingConntroller.text)),
+        ],
+      ),
+    );
+  }
+
+  Widget buildDeadLineField(
+      BuildContext context, TextEditingController dateEditingConntroller) {
+    return Consumer<SignUpProvider>(
       builder: (context, model, child) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -649,7 +715,7 @@ class TextFieldClass {
                 var date = await showDatePicker(
                     context: context,
                     initialDate: DateTime.now(),
-                    firstDate: DateTime(1900),
+                    firstDate: DateTime.now(),
                     lastDate: DateTime(2100));
                 if (date != null) {
                   dateEditingConntroller.text =
@@ -674,7 +740,7 @@ class TextFieldClass {
 
   Widget buildJobTypeField(
       BuildContext context, TextEditingController controller) {
-    return Consumer<SignUpProviderModel>(
+    return Consumer<SignUpProvider>(
       builder: (context, jobTypeProvider, child) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -721,7 +787,7 @@ class TextFieldClass {
 
   Widget buildEducationQualificationField(
       BuildContext context, TextEditingController controller) {
-    return Consumer<SignUpProviderModel>(
+    return Consumer<SignUpProvider>(
       builder: (context, model, child) => TextFormWidget(
         controller: controller,
         label: 'Education Level',
@@ -756,7 +822,7 @@ class TextFieldClass {
 
   Widget buildSalaryField(
       BuildContext context, TextEditingController controller) {
-    return Consumer<SignUpProviderModel>(
+    return Consumer<SignUpProvider>(
       builder: (context, model, child) => TextFormWidget(
         controller: controller,
         label: model.isJob ? 'Salary' : 'Stipend',
@@ -772,6 +838,76 @@ class TextFieldClass {
             return null;
           } else {
             return 'Please Enter the valid  Salary';
+          }
+        },
+      ),
+    );
+  }
+
+  Widget buildopportunitiesField(
+      BuildContext context, TextEditingController opportunitiesController) {
+    return Consumer<SignUpProvider>(
+      builder: (context, model, child) => TextFormWidget(
+        keyboardType: TextInputType.number,
+        controller: opportunitiesController,
+        label: 'opportunities',
+        icon: FontAwesomeIcons.chair,
+        suffixicon: model.isopportunities == null
+            ? null
+            : model.isopportunities == false
+                ? Icons.cancel
+                : Icons.check_circle,
+        suffixIconColor: model.isopportunities == null
+            ? null
+            : model.isopportunities == false
+                ? Colors.redAccent
+                : Colors.green,
+        hintText: "Eg. 58",
+        onChanged: (value) => model.validateOpportunities(value!),
+        validator: (value) {
+          if (value!.isEmpty) {
+            return 'Please Enter the opportunities';
+          } else if (value.trim().isNotEmpty &&
+              value.contains(RegExp(r'[0-9]')) &&
+              !value.contains(RegExp(r'[!@#\$%^&*(),?":{}|<>]'))) {
+            return null;
+          } else {
+            return 'Please Enter the valid  opportunities';
+          }
+        },
+      ),
+    );
+  }
+
+  Widget buildYearofExpField(
+      BuildContext context, TextEditingController opportunitiesController) {
+    return Consumer<SignUpProvider>(
+      builder: (context, model, child) => TextFormWidget(
+        keyboardType: TextInputType.number,
+        controller: opportunitiesController,
+        label: 'Year Of Experience',
+        icon: FontAwesomeIcons.calendarDays,
+        suffixicon: model.isyearofexp == null
+            ? null
+            : model.isyearofexp == false
+                ? Icons.cancel
+                : Icons.check_circle,
+        suffixIconColor: model.isyearofexp == null
+            ? null
+            : model.isyearofexp == false
+                ? Colors.redAccent
+                : Colors.green,
+        hintText: "Eg. 2",
+        onChanged: (value) => model.validateyearofexp(value!),
+        validator: (value) {
+          if (value!.isEmpty) {
+            return 'Please Enter the Year Of Experience';
+          } else if (value.trim().isNotEmpty &&
+              value.contains(RegExp(r'[0-9]')) &&
+              !value.contains(RegExp(r'[!@#\$%^&*(),?":{}|<>]'))) {
+            return null;
+          } else {
+            return 'Please Enter the valid  Year Of Experience';
           }
         },
       ),

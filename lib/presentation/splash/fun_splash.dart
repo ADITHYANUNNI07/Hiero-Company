@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:hiero_company/core/config/api_config.dart';
 import 'package:hiero_company/infrastructure/helper/sharedpreference.dart';
 import 'package:hiero_company/presentation/dashboard/dashboard_screen.dart';
 import 'package:hiero_company/presentation/welcome/welcome_screen.dart';
@@ -14,6 +15,7 @@ void splashtime(BuildContext context) async {
           Provider.of<SharedPreferenceClass>(context, listen: false);
       await sharedController.getAccessTokenStatus();
       log(sharedController.accessToken.toString());
+      AppDevConfig.accessToken = sharedController.accessToken ?? '';
       if (sharedController.accessToken == null ||
           sharedController.accessToken!.isEmpty) {
         Navigator.of(context).pushReplacement(

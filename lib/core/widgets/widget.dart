@@ -169,7 +169,7 @@ class ElevatedBtnWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           leading ?? Container(),
-          leading != null ? sizedBox10W : Container(),
+          leading != null ? sizedBox5W : Container(),
           Text(
             title,
             style: TextStyle(
@@ -255,7 +255,7 @@ class _JobFilterAlertBoxState extends State<JobFilterAlertBox> {
   @override
   Widget build(BuildContext context) {
     var jobFilterProvider = Provider.of<JobFilterProvider>(context);
-    var salaryProvider = Provider.of<SignUpProviderModel>(context);
+    var salaryProvider = Provider.of<SignUpProvider>(context);
     return SingleChildScrollView(
       child: Column(
         children: [

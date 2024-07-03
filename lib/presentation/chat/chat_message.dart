@@ -20,7 +20,7 @@ class ChatMessageScrn extends StatelessWidget {
           title: Row(
             children: [
               const CircleAvatar(
-                  backgroundImage: AssetImage('assets/images/th.jpeg')),
+                  backgroundImage: AssetImage(AppImage.companyPic)),
               sizedBox5W,
               SizedBox(
                 width: isUser ? size.width - 200 : size.width - 130,

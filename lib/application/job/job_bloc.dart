@@ -15,10 +15,24 @@ class JobBloc extends Bloc<JobEvent, JobState> {
       try {
         final result =
             await jobRepository.addJob(event.jobmodel, event.accessToken);
-        if (result == 'success') {
-          emit(const JobState.loggedIn(''));
+        if (result == 'success' ||
+            result == 'Job opening created successfully') {
+          emit(JobState.loggedIn(result));
         } else {
           emit(JobState.error(result));
+        }
+      } catch (e) {
+        emit(JobState.error(e.toString()));
+      }
+    });
+    on<_GetAllJobEvent>((event, emit) async {
+      emit(const JobState.loading());
+      try {
+        final result = await jobRepository.getAllJob(event.accessToken);
+        if (result is String) {
+          emit(JobState.error(result));
+        } else {
+          emit(JobState.loggedIn(result));
         }
       } catch (e) {
         emit(JobState.error(e.toString()));

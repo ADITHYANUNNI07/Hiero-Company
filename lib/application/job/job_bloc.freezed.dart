@@ -16,37 +16,42 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$JobEvent {
-  JobModel get jobmodel => throw _privateConstructorUsedError;
   String get accessToken => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(JobModel jobmodel, String accessToken) addJob,
+    required TResult Function(String accessToken) getAllJob,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(JobModel jobmodel, String accessToken)? addJob,
+    TResult? Function(String accessToken)? getAllJob,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(JobModel jobmodel, String accessToken)? addJob,
+    TResult Function(String accessToken)? getAllJob,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_AddJobEvent value) addJob,
+    required TResult Function(_GetAllJobEvent value) getAllJob,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_AddJobEvent value)? addJob,
+    TResult? Function(_GetAllJobEvent value)? getAllJob,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AddJobEvent value)? addJob,
+    TResult Function(_GetAllJobEvent value)? getAllJob,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -61,7 +66,7 @@ abstract class $JobEventCopyWith<$Res> {
   factory $JobEventCopyWith(JobEvent value, $Res Function(JobEvent) then) =
       _$JobEventCopyWithImpl<$Res, JobEvent>;
   @useResult
-  $Res call({JobModel jobmodel, String accessToken});
+  $Res call({String accessToken});
 }
 
 /// @nodoc
@@ -77,14 +82,9 @@ class _$JobEventCopyWithImpl<$Res, $Val extends JobEvent>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? jobmodel = null,
     Object? accessToken = null,
   }) {
     return _then(_value.copyWith(
-      jobmodel: null == jobmodel
-          ? _value.jobmodel
-          : jobmodel // ignore: cast_nullable_to_non_nullable
-              as JobModel,
       accessToken: null == accessToken
           ? _value.accessToken
           : accessToken // ignore: cast_nullable_to_non_nullable
@@ -170,6 +170,7 @@ class _$AddJobEventImpl implements _AddJobEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(JobModel jobmodel, String accessToken) addJob,
+    required TResult Function(String accessToken) getAllJob,
   }) {
     return addJob(jobmodel, accessToken);
   }
@@ -178,6 +179,7 @@ class _$AddJobEventImpl implements _AddJobEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(JobModel jobmodel, String accessToken)? addJob,
+    TResult? Function(String accessToken)? getAllJob,
   }) {
     return addJob?.call(jobmodel, accessToken);
   }
@@ -186,6 +188,7 @@ class _$AddJobEventImpl implements _AddJobEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(JobModel jobmodel, String accessToken)? addJob,
+    TResult Function(String accessToken)? getAllJob,
     required TResult orElse(),
   }) {
     if (addJob != null) {
@@ -198,6 +201,7 @@ class _$AddJobEventImpl implements _AddJobEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_AddJobEvent value) addJob,
+    required TResult Function(_GetAllJobEvent value) getAllJob,
   }) {
     return addJob(this);
   }
@@ -206,6 +210,7 @@ class _$AddJobEventImpl implements _AddJobEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_AddJobEvent value)? addJob,
+    TResult? Function(_GetAllJobEvent value)? getAllJob,
   }) {
     return addJob?.call(this);
   }
@@ -214,6 +219,7 @@ class _$AddJobEventImpl implements _AddJobEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AddJobEvent value)? addJob,
+    TResult Function(_GetAllJobEvent value)? getAllJob,
     required TResult orElse(),
   }) {
     if (addJob != null) {
@@ -227,7 +233,6 @@ abstract class _AddJobEvent implements JobEvent {
   const factory _AddJobEvent(
       final JobModel jobmodel, final String accessToken) = _$AddJobEventImpl;
 
-  @override
   JobModel get jobmodel;
   @override
   String get accessToken;
@@ -238,12 +243,152 @@ abstract class _AddJobEvent implements JobEvent {
 }
 
 /// @nodoc
+abstract class _$$GetAllJobEventImplCopyWith<$Res>
+    implements $JobEventCopyWith<$Res> {
+  factory _$$GetAllJobEventImplCopyWith(_$GetAllJobEventImpl value,
+          $Res Function(_$GetAllJobEventImpl) then) =
+      __$$GetAllJobEventImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String accessToken});
+}
+
+/// @nodoc
+class __$$GetAllJobEventImplCopyWithImpl<$Res>
+    extends _$JobEventCopyWithImpl<$Res, _$GetAllJobEventImpl>
+    implements _$$GetAllJobEventImplCopyWith<$Res> {
+  __$$GetAllJobEventImplCopyWithImpl(
+      _$GetAllJobEventImpl _value, $Res Function(_$GetAllJobEventImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? accessToken = null,
+  }) {
+    return _then(_$GetAllJobEventImpl(
+      null == accessToken
+          ? _value.accessToken
+          : accessToken // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetAllJobEventImpl implements _GetAllJobEvent {
+  const _$GetAllJobEventImpl(this.accessToken);
+
+  @override
+  final String accessToken;
+
+  @override
+  String toString() {
+    return 'JobEvent.getAllJob(accessToken: $accessToken)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetAllJobEventImpl &&
+            (identical(other.accessToken, accessToken) ||
+                other.accessToken == accessToken));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, accessToken);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetAllJobEventImplCopyWith<_$GetAllJobEventImpl> get copyWith =>
+      __$$GetAllJobEventImplCopyWithImpl<_$GetAllJobEventImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(JobModel jobmodel, String accessToken) addJob,
+    required TResult Function(String accessToken) getAllJob,
+  }) {
+    return getAllJob(accessToken);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(JobModel jobmodel, String accessToken)? addJob,
+    TResult? Function(String accessToken)? getAllJob,
+  }) {
+    return getAllJob?.call(accessToken);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(JobModel jobmodel, String accessToken)? addJob,
+    TResult Function(String accessToken)? getAllJob,
+    required TResult orElse(),
+  }) {
+    if (getAllJob != null) {
+      return getAllJob(accessToken);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_AddJobEvent value) addJob,
+    required TResult Function(_GetAllJobEvent value) getAllJob,
+  }) {
+    return getAllJob(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_AddJobEvent value)? addJob,
+    TResult? Function(_GetAllJobEvent value)? getAllJob,
+  }) {
+    return getAllJob?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AddJobEvent value)? addJob,
+    TResult Function(_GetAllJobEvent value)? getAllJob,
+    required TResult orElse(),
+  }) {
+    if (getAllJob != null) {
+      return getAllJob(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetAllJobEvent implements JobEvent {
+  const factory _GetAllJobEvent(final String accessToken) =
+      _$GetAllJobEventImpl;
+
+  @override
+  String get accessToken;
+  @override
+  @JsonKey(ignore: true)
+  _$$GetAllJobEventImplCopyWith<_$GetAllJobEventImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$JobState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String token) loggedIn,
+    required TResult Function(dynamic result) loggedIn,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -251,7 +396,7 @@ mixin _$JobState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(String token)? loggedIn,
+    TResult? Function(dynamic result)? loggedIn,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -259,7 +404,7 @@ mixin _$JobState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String token)? loggedIn,
+    TResult Function(dynamic result)? loggedIn,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -348,7 +493,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String token) loggedIn,
+    required TResult Function(dynamic result) loggedIn,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -359,7 +504,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(String token)? loggedIn,
+    TResult? Function(dynamic result)? loggedIn,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -370,7 +515,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String token)? loggedIn,
+    TResult Function(dynamic result)? loggedIn,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -462,7 +607,7 @@ class _$JobStateLoadingImpl implements _JobStateLoading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String token) loggedIn,
+    required TResult Function(dynamic result) loggedIn,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -473,7 +618,7 @@ class _$JobStateLoadingImpl implements _JobStateLoading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(String token)? loggedIn,
+    TResult? Function(dynamic result)? loggedIn,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -484,7 +629,7 @@ class _$JobStateLoadingImpl implements _JobStateLoading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String token)? loggedIn,
+    TResult Function(dynamic result)? loggedIn,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -542,7 +687,7 @@ abstract class _$$LoggedInImplCopyWith<$Res> {
           _$LoggedInImpl value, $Res Function(_$LoggedInImpl) then) =
       __$$LoggedInImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String token});
+  $Res call({dynamic result});
 }
 
 /// @nodoc
@@ -556,13 +701,13 @@ class __$$LoggedInImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? token = null,
+    Object? result = freezed,
   }) {
     return _then(_$LoggedInImpl(
-      null == token
-          ? _value.token
-          : token // ignore: cast_nullable_to_non_nullable
-              as String,
+      freezed == result
+          ? _value.result
+          : result // ignore: cast_nullable_to_non_nullable
+              as dynamic,
     ));
   }
 }
@@ -570,14 +715,14 @@ class __$$LoggedInImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$LoggedInImpl implements _LoggedIn {
-  const _$LoggedInImpl(this.token);
+  const _$LoggedInImpl(this.result);
 
   @override
-  final String token;
+  final dynamic result;
 
   @override
   String toString() {
-    return 'JobState.loggedIn(token: $token)';
+    return 'JobState.loggedIn(result: $result)';
   }
 
   @override
@@ -585,11 +730,12 @@ class _$LoggedInImpl implements _LoggedIn {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoggedInImpl &&
-            (identical(other.token, token) || other.token == token));
+            const DeepCollectionEquality().equals(other.result, result));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, token);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(result));
 
   @JsonKey(ignore: true)
   @override
@@ -602,10 +748,10 @@ class _$LoggedInImpl implements _LoggedIn {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String token) loggedIn,
+    required TResult Function(dynamic result) loggedIn,
     required TResult Function(String message) error,
   }) {
-    return loggedIn(token);
+    return loggedIn(result);
   }
 
   @override
@@ -613,10 +759,10 @@ class _$LoggedInImpl implements _LoggedIn {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(String token)? loggedIn,
+    TResult? Function(dynamic result)? loggedIn,
     TResult? Function(String message)? error,
   }) {
-    return loggedIn?.call(token);
+    return loggedIn?.call(result);
   }
 
   @override
@@ -624,12 +770,12 @@ class _$LoggedInImpl implements _LoggedIn {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String token)? loggedIn,
+    TResult Function(dynamic result)? loggedIn,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (loggedIn != null) {
-      return loggedIn(token);
+      return loggedIn(result);
     }
     return orElse();
   }
@@ -673,9 +819,9 @@ class _$LoggedInImpl implements _LoggedIn {
 }
 
 abstract class _LoggedIn implements JobState {
-  const factory _LoggedIn(final String token) = _$LoggedInImpl;
+  const factory _LoggedIn(final dynamic result) = _$LoggedInImpl;
 
-  String get token;
+  dynamic get result;
   @JsonKey(ignore: true)
   _$$LoggedInImplCopyWith<_$LoggedInImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -747,7 +893,7 @@ class _$JobStateErrorImpl implements _JobStateError {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String token) loggedIn,
+    required TResult Function(dynamic result) loggedIn,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -758,7 +904,7 @@ class _$JobStateErrorImpl implements _JobStateError {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(String token)? loggedIn,
+    TResult? Function(dynamic result)? loggedIn,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -769,7 +915,7 @@ class _$JobStateErrorImpl implements _JobStateError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String token)? loggedIn,
+    TResult Function(dynamic result)? loggedIn,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {

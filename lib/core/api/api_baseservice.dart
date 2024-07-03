@@ -26,7 +26,7 @@ class BaseApiService {
     } catch (e) {
       if (e is DioException) {
         handleApiError('Post', e);
-        return null;
+        return e.response;
       } else {
         debugPrint('Get Request Error: $e');
         return null;
@@ -58,7 +58,7 @@ class BaseApiService {
     } catch (e) {
       if (e is DioException) {
         handleApiError('Get', e);
-        return null;
+        return e.response;
       } else {
         debugPrint('Get Request Error: $e');
         return null;
@@ -174,11 +174,15 @@ class BaseApiService {
     }
   }
 
-  Future<Response?> deleteApiCall(String firebaseToken, String apiUrl) async {
+  Future<Response?> deleteApiCall(
+      String firebaseToken, String apiUrl, int id) async {
     try {
       debugPrint(AppDevConfig.baseURL + apiUrl);
       Response response = await dio.delete(
         AppDevConfig.baseURL + apiUrl,
+        queryParameters: {
+          'id': id,
+        },
         options: Options(
           headers: {'Authorization': 'Bearer $firebaseToken'},
         ),

@@ -1,12 +1,18 @@
 import 'package:animated_segmented_tab_control/animated_segmented_tab_control.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_sliding_box/flutter_sliding_box.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hiero_company/core/colors/colors.dart';
 import 'package:hiero_company/core/constants/constants.dart';
+import 'package:hiero_company/core/provider/provider.dart';
+import 'package:hiero_company/infrastructure/models/jobmodel.dart';
 import 'package:hiero_company/presentation/home/home_screen.dart';
 import 'package:hiero_company/presentation/job/add%20job/add_job.dart';
+import 'package:hiero_company/presentation/job/add%20job/widget/bottomsheet.dart';
+import 'package:provider/provider.dart';
+import 'package:redacted/redacted.dart';
 
 class PostJoborInternScrn extends StatelessWidget {
   const PostJoborInternScrn({super.key});
@@ -28,18 +34,22 @@ class PostJoborInternScrn extends StatelessWidget {
                       children: [
                         Text('Job/Internship', style: mediumTitle),
                         const Spacer(),
-                        InkWell(
-                          onTap: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      const AddJobInternPostScrn()),
-                            );
-                          },
-                          child: const CircleAvatar(
-                            radius: 24,
-                            backgroundColor: colorAppLight,
-                            child: FaIcon(FontAwesomeIcons.solidSquarePlus),
+                        Consumer<SignUpProvider>(
+                          builder: (context, jobTypeProvider, child) => InkWell(
+                            onTap: () {
+                              clearJobAllControllers();
+                              jobTypeProvider.clearAllFields();
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const AddJobInternPostScrn()),
+                              );
+                            },
+                            child: const CircleAvatar(
+                              radius: 24,
+                              backgroundColor: colorAppLight,
+                              child: FaIcon(FontAwesomeIcons.solidSquarePlus),
+                            ),
                           ),
                         ),
                         sizedBox5W,
@@ -83,8 +93,30 @@ class PostJoborInternScrn extends StatelessWidget {
                 child: TabBarView(
                   physics: const BouncingScrollPhysics(),
                   children: [
-                    JobPostContainerWidget(size: size),
-                    InternshipPostWidget(size: size)
+                    InkWell(
+                        onLongPress: () {
+                          showSlidingBox(
+                              context: context,
+                              box: SlidingBox(
+                                maxHeight: size.height * 0.25,
+                                color: Colors.white,
+                                style: BoxStyle.shadow,
+                                draggableIconBackColor: Colors.transparent,
+                                body: bottomSheetJobOrInternship(
+                                    context: context, jobmodel: jobModel),
+                              ));
+                        },
+                        child: JobPostContainerWidget(
+                          size: size,
+                          jobModel: jobModel,
+                        )),
+                    InternshipPostWidgetRedacted(size: size).redacted(
+                      context: context,
+                      redact: true,
+                      configuration: RedactedConfiguration(
+                        animationDuration: const Duration(milliseconds: 800),
+                      ),
+                    ),
                   ],
                 ),
               ),

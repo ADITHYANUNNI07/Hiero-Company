@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hiero_company/core/colors/colors.dart';
 import 'package:hiero_company/core/constants/constants.dart';
 import 'package:hiero_company/core/widgets/widget.dart';
+import 'package:hiero_company/infrastructure/models/jobmodel.dart';
 import 'package:hiero_company/presentation/chat/chat_screen.dart';
 import 'package:lottie/lottie.dart';
 
@@ -15,126 +16,126 @@ class HomeScrn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
-        body: Stack(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 10, right: 10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 15),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const PaddingContainerWidget(
-                            color: colorApp,
-                            child: Icon(CupertinoIcons.text_badge_star,
-                                color: Colors.white)),
-                        sizedBox10W,
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text('Hai', style: mediumsubTitle),
-                            Text('Vista Private Limited', style: mediumTitle),
-                          ],
-                        ),
-                        const Spacer(),
-                        const CircleAvatar(
-                          radius: 25,
-                          backgroundImage: AssetImage('assets/images/th.jpeg'),
-                        )
-                      ],
-                    ),
-                  ),
-                  sizedBox10H,
-                  SearchFilterWidget(
-                    size: size,
-                    onTap: () {
-                      JobFilterAlertBox.show(context, size);
-                    },
-                  ),
-                  sizedBox10H,
-                  const RowMainTitleWidget(title: 'Profiles'),
-                  sizedBox10H,
-                  Column(
+    return TopColorSafeArea(
+      child: SafeArea(
+        child: DefaultTabController(
+          length: 2,
+          child: Scaffold(
+            body: Stack(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 10, right: 10),
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      PaddingContainerWidget(
-                          width: size.width / 2,
-                          color: colorWhite,
-                          child: Column(
-                            children: [
-                              const CircleAvatar(
-                                backgroundImage:
-                                    AssetImage('assets/images/profile.jpg'),
-                                radius: 40,
-                              ),
-                              sizedBox10H,
-                              Text('Adithyan R',
-                                  style: companyDesignationTitle),
-                              Text('Flutter Developer',
-                                  style: companyNameTitle),
-                              sizedBox5H,
-                              const PaddingContainerWidget(
-                                padding: 6,
-                                color: colorAppLight,
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    FaIcon(FontAwesomeIcons.battleNet),
-                                    sizedBox5W,
-                                    Text('102 Connections',
-                                        style: TextStyle(color: colorApp)),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          )),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 15),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const PaddingContainerWidget(
+                                color: colorApp,
+                                child: Icon(CupertinoIcons.text_badge_star,
+                                    color: Colors.white)),
+                            sizedBox10W,
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text('Hai', style: mediumsubTitle),
+                                Text('Vista Private Limited',
+                                    style: mediumTitle),
+                              ],
+                            ),
+                            const Spacer(),
+                            const CircleAvatar(
+                              radius: 25,
+                              backgroundImage: AssetImage(AppImage.companyPic),
+                            )
+                          ],
+                        ),
+                      ),
+                      sizedBox10H,
+                      const RowMainTitleWidget(title: 'Profiles'),
+                      sizedBox10H,
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          PaddingContainerWidget(
+                              width: size.width / 2,
+                              color: colorWhite,
+                              child: Column(
+                                children: [
+                                  const CircleAvatar(
+                                    backgroundImage:
+                                        AssetImage(AppImage.userPic),
+                                    radius: 40,
+                                  ),
+                                  sizedBox10H,
+                                  Text('Adithyan R',
+                                      style: companyDesignationTitle),
+                                  Text('Flutter Developer',
+                                      style: companyNameTitle),
+                                  sizedBox5H,
+                                  const PaddingContainerWidget(
+                                    padding: 6,
+                                    color: colorAppLight,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        FaIcon(FontAwesomeIcons.battleNet),
+                                        sizedBox5W,
+                                        Text('102 Connections',
+                                            style: TextStyle(color: colorApp)),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              )),
+                        ],
+                      ),
+                      const RowMainTitleWidget(title: 'Application Status'),
+                      sizedBox10H,
+                      SegmentedTabControl(
+                        barDecoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(100)),
+                        tabTextColor: colorApp,
+                        selectedTabTextColor: Colors.white,
+                        squeezeIntensity: 2,
+                        tabPadding: const EdgeInsets.symmetric(horizontal: 8),
+                        indicatorDecoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(100)),
+                        textStyle:
+                            GoogleFonts.poppins(fontWeight: FontWeight.bold),
+                        tabs: const [
+                          SegmentTab(
+                            label: 'Job',
+                            color: colorApp,
+                            backgroundColor: colorAppLight,
+                          ),
+                          SegmentTab(
+                            label: 'Internship',
+                            backgroundColor: colorAppLight,
+                            color: colorApp,
+                          ),
+                        ],
+                      ),
                     ],
                   ),
-                  const RowMainTitleWidget(title: 'Application Status'),
-                  sizedBox10H,
-                  SegmentedTabControl(
-                    barDecoration:
-                        BoxDecoration(borderRadius: BorderRadius.circular(100)),
-                    tabTextColor: colorApp,
-                    selectedTabTextColor: Colors.white,
-                    squeezeIntensity: 2,
-                    tabPadding: const EdgeInsets.symmetric(horizontal: 8),
-                    indicatorDecoration:
-                        BoxDecoration(borderRadius: BorderRadius.circular(100)),
-                    textStyle: GoogleFonts.poppins(fontWeight: FontWeight.bold),
-                    tabs: const [
-                      SegmentTab(
-                        label: 'Job',
-                        color: colorApp,
-                        backgroundColor: colorAppLight,
-                      ),
-                      SegmentTab(
-                        label: 'Internship',
-                        backgroundColor: colorAppLight,
-                        color: colorApp,
-                      ),
+                ), //tab
+                Padding(
+                  padding: EdgeInsets.only(top: size.height * 0.53),
+                  child: const TabBarView(
+                    physics: BouncingScrollPhysics(),
+                    children: [
+                      JobTile(),
+                      PersonalMessageTile(),
                     ],
                   ),
-                ],
-              ),
-            ), //tab
-            Padding(
-              padding: EdgeInsets.only(top: size.height * 0.62),
-              child: const TabBarView(
-                physics: BouncingScrollPhysics(),
-                children: [
-                  JobTile(),
-                  PersonalMessageTile(),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
@@ -142,11 +143,10 @@ class HomeScrn extends StatelessWidget {
 }
 
 class JobTile extends StatelessWidget {
-  const JobTile({Key? key}) : super(key: key);
+  const JobTile({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.only(left: 10, right: 10),
       child: Container(
@@ -163,9 +163,9 @@ class JobTile extends StatelessWidget {
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        const CircleAvatar(
+                        CircleAvatar(
                             backgroundImage:
-                                AssetImage('assets/images/th.jpeg'),
+                                AssetImage(jobModel.companyImageUrl ?? ''),
                             radius: 30),
                         sizedBox10W,
                         Column(
@@ -173,12 +173,12 @@ class JobTile extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              'Community Management',
+                              jobModel.title,
                               style: companyDesignationTitle,
                               overflow: TextOverflow.ellipsis,
                             ),
                             Text(
-                              'Finari Services Private Limited',
+                              jobModel.companyName ?? '',
                               style: companyNameTitle,
                               overflow: TextOverflow.ellipsis,
                             )
@@ -186,7 +186,7 @@ class JobTile extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const Row(
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         PaddingContainerWidget(
@@ -194,9 +194,9 @@ class JobTile extends StatelessWidget {
                           color: colorWhite,
                           child: Row(
                             children: [
-                              FaIcon(FontAwesomeIcons.house, size: 15),
+                              const FaIcon(FontAwesomeIcons.house, size: 15),
                               sizedBox10W,
-                              Text('Work from home')
+                              Text(jobModel.employmentType)
                             ],
                           ),
                         ),
@@ -255,7 +255,7 @@ class InternshipPostWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const CircleAvatar(
-                      backgroundImage: AssetImage('assets/images/th.jpeg'),
+                      backgroundImage: AssetImage(AppImage.companyPic),
                       radius: 30),
                   sizedBox10W,
                   SizedBox(
@@ -341,8 +341,9 @@ class JobPostContainerWidget extends StatelessWidget {
   const JobPostContainerWidget({
     super.key,
     required this.size,
+    required this.jobModel,
   });
-
+  final JobModel jobModel;
   final Size size;
 
   @override
@@ -356,8 +357,9 @@ class JobPostContainerWidget extends StatelessWidget {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const CircleAvatar(
-                      backgroundImage: AssetImage('assets/images/th.jpeg'),
+                  CircleAvatar(
+                      backgroundImage:
+                          AssetImage(jobModel.companyImageUrl ?? ''),
                       radius: 30),
                   sizedBox10W,
                   SizedBox(
@@ -368,12 +370,12 @@ class JobPostContainerWidget extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'Community Management',
+                          jobModel.title,
                           style: companyDesignationTitle,
                           overflow: TextOverflow.ellipsis,
                         ),
                         Text(
-                          'Finari Services Private Limited',
+                          jobModel.companyName ?? '',
                           style: companyNameTitle,
                           overflow: TextOverflow.ellipsis,
                         )
@@ -388,7 +390,7 @@ class JobPostContainerWidget extends StatelessWidget {
                   )
                 ],
               ),
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   PaddingContainerWidget(
@@ -396,32 +398,32 @@ class JobPostContainerWidget extends StatelessWidget {
                     color: colorWhite,
                     child: Row(
                       children: [
-                        FaIcon(FontAwesomeIcons.house, size: 15),
+                        const FaIcon(FontAwesomeIcons.house, size: 15),
                         sizedBox10W,
-                        Text('Work from home')
+                        Text(jobModel.employmentType)
                       ],
                     ),
                   ),
                 ],
               ),
               sizedBox15H,
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   JobSDateExpWidget(
                       iconData: FontAwesomeIcons.play,
                       title: 'START DATE',
-                      subtitle: 'Immediately',
+                      subtitle: jobModel.startingDate,
                       color: colorApp),
                   JobSDateExpWidget(
                       iconData: FontAwesomeIcons.calendarDay,
                       title: 'EXPERIENCE',
-                      subtitle: '1-5 Years',
+                      subtitle: "${jobModel.yearOfExperience} Years",
                       color: colorApp),
                   JobSDateExpWidget(
                       iconData: FontAwesomeIcons.piggyBank,
                       title: 'CTC(Annual)',
-                      subtitle: '₹ 3 - 5 L',
+                      subtitle: jobModel.salary,
                       color: colorApp),
                 ],
               ),
@@ -464,7 +466,7 @@ class JobSDateExpWidget extends StatelessWidget {
     required this.subtitle,
     required this.color,
   });
-  final IconData iconData;
+  final IconData? iconData;
   final String title;
   final String subtitle;
   final Color color;
@@ -496,10 +498,12 @@ class TimeDurationContainerWidget extends StatelessWidget {
     required this.title,
     required this.color,
     required this.lightColor,
+    this.isredact = false,
   });
   final String title;
   final Color color;
   final Color lightColor;
+  final bool isredact;
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -516,28 +520,34 @@ class TimeDurationContainerWidget extends StatelessWidget {
             decoration: BoxDecoration(
                 color: colorWhite, borderRadius: BorderRadius.circular(5)),
             child: Center(
-              child: Text(
-                title,
-                style: TextStyle(
-                    fontSize: 14, fontWeight: FontWeight.bold, color: color),
-              ),
+              child: isredact
+                  ? Container()
+                  : Text(
+                      title,
+                      style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: color),
+                    ),
             ),
           ),
         ),
         Positioned(
             right: 0,
-            child: CircleAvatar(
-              radius: 10,
-              backgroundColor: colorAppLight,
-              child: Container(
-                width: 15,
-                height: 15,
-                decoration: BoxDecoration(
-                  color: color,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-            ))
+            child: isredact
+                ? Container()
+                : CircleAvatar(
+                    radius: 10,
+                    backgroundColor: colorAppLight,
+                    child: Container(
+                      width: 15,
+                      height: 15,
+                      decoration: BoxDecoration(
+                        color: color,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                  ))
       ],
     );
   }
@@ -559,19 +569,22 @@ class SearchFilterWidget extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        SizedBox(
-          width: size.width * 0.8,
-          child: const TextFormWidget(
-              label: 'Search Job/Internship',
-              icon: CupertinoIcons.search,
-              isNolabel: true,
-              isSearchFilter: true),
+        Expanded(
+          child: SizedBox(
+            height: 51,
+            width: size.width * 0.8,
+            child: const TextFormWidget(
+                hintText: 'Search Job/Internship',
+                icon: CupertinoIcons.search,
+                isNolabel: true,
+                isSearchFilter: true),
+          ),
         ),
         InkWell(
           onTap: onTap,
           child: Container(
             color: colorWhite,
-            height: 59,
+            height: 51,
             child: PaddingContainerWidget(
                 color: filterColor ?? colorApp,
                 child: const Padding(
@@ -583,6 +596,109 @@ class SearchFilterWidget extends StatelessWidget {
                 )),
           ),
         )
+      ],
+    );
+  }
+}
+
+class InternshipPostWidgetRedacted extends StatelessWidget {
+  const InternshipPostWidgetRedacted({
+    super.key,
+    required this.size,
+  });
+
+  final Size size;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        PaddingContainerWidget(
+          color: colorJobAppLight,
+          child: Column(
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    height: 60,
+                    width: 60,
+                    decoration: const BoxDecoration(
+                        shape: BoxShape.circle, color: colorApp),
+                    child: const Text(''),
+                  ),
+                  sizedBox10W,
+                  SizedBox(
+                    height: 60,
+                    width: size.width - 114 - 70,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          '.............',
+                          style: companyDesignationTitle,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        sizedBox5H,
+                        Text(
+                          'Finari.............................',
+                          style: companyNameTitle,
+                          overflow: TextOverflow.ellipsis,
+                        )
+                      ],
+                    ),
+                  ),
+                  const Spacer(),
+                  const TimeDurationContainerWidget(
+                    title: 'now',
+                    color: colorJobApp,
+                    lightColor: colorJobAppLight,
+                    isredact: true,
+                  ),
+                ],
+              ),
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  PaddingContainerWidget(
+                    width: 150,
+                    padding: 8,
+                    color: colorWhite,
+                    child: Row(
+                      children: [
+                        sizedBox10H,
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              sizedBox15H,
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  JobSDateExpWidget(
+                      iconData: null,
+                      title: '....................',
+                      subtitle: '....................',
+                      color: colorJobApp),
+                  JobSDateExpWidget(
+                      iconData: null,
+                      title: '....................',
+                      subtitle: '....................',
+                      color: colorJobApp),
+                  JobSDateExpWidget(
+                      iconData: null,
+                      title: '....................',
+                      subtitle: '....................',
+                      color: colorJobApp),
+                ],
+              ),
+              sizedBox15H,
+            ],
+          ),
+        ),
+        sizedBox10H
       ],
     );
   }
