@@ -8,7 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hiero_company/application/auth/auth_bloc.dart';
 import 'package:hiero_company/core/notification/notification.dart';
-import 'package:hiero_company/infrastructure/models/usermodels.dart';
+import 'package:hiero_company/infrastructure/models/companymodels.dart';
 
 String verificationID = '';
 
@@ -20,7 +20,7 @@ class AuthServiceClass {
       CompanyModel companyModel, BuildContext context) async {
     try {
       User user = (await firebaseAuth.signInWithEmailAndPassword(
-              email: companyModel.email, password: companyModel.password))
+              email: companyModel.email, password: companyModel.password!))
           .user!;
       if (user != null) {
         context.read<AuthBloc>().add(AuthEvent.logIn(companyModel));
@@ -44,7 +44,7 @@ class AuthServiceClass {
       CompanyModel companyModel, BuildContext context) async {
     try {
       User user = (await firebaseAuth.createUserWithEmailAndPassword(
-              email: companyModel.email, password: companyModel.password))
+              email: companyModel.email, password: companyModel.password!))
           .user!;
       if (user != null) {
         context.read<AuthBloc>().add(AuthEvent.signUp(companyModel));

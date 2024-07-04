@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hiero_company/domain/services/auth/auth_repository.dart';
-import 'package:hiero_company/infrastructure/models/usermodels.dart';
+import 'package:hiero_company/infrastructure/models/companymodels.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hiero_company/infrastructure/firebase/firebase_auth.dart';
-import 'package:hiero_company/infrastructure/models/usermodels.dart';
+import 'package:hiero_company/infrastructure/models/companymodels.dart';
 import 'package:hiero_company/presentation/signup/signup_screen.dart';
 
 loginFun(GlobalKey<FormState> loginformKey, BuildContext context) {

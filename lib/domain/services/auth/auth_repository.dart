@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:hiero_company/core/api/api_baseservice.dart';
 import 'package:hiero_company/core/config/api_config.dart';
 import 'package:hiero_company/infrastructure/helper/sharedpreference.dart';
-import 'package:hiero_company/infrastructure/models/usermodels.dart';
+import 'package:hiero_company/infrastructure/models/companymodels.dart';
 
 class AuthRepository {
   final Dio dio = Dio();
@@ -29,7 +29,9 @@ class AuthRepository {
         print('Signup successful!');
         final data = response.data;
         final token = data['data']['Token'];
+        final companyName = data['data']['Employer']['company_name'];
         SharedPreferenceClass().saveAccessTokenStatus(token);
+        SharedPreferenceClass().saveCompanyNameStatus(companyName);
         AppDevConfig.accessToken = token;
         return 'success';
       } else {
@@ -68,8 +70,11 @@ class AuthRepository {
         print('Login successful!');
         final data = response.data;
         final token = data['data']['Token'];
+        final companyName = data['data']['Employer']['company_name'];
         print('token:$token');
+        print('company_name:$companyName');
         SharedPreferenceClass().saveAccessTokenStatus(token);
+        SharedPreferenceClass().saveCompanyNameStatus(companyName);
         AppDevConfig.accessToken = token;
         return 'success';
       } else {

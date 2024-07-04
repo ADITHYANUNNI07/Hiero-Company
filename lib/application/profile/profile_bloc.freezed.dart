@@ -16,37 +16,42 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ProfileEvent {
+  String get token => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() started,
+    required TResult Function(String token) getCompanyProfile,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? started,
+    TResult? Function(String token)? getCompanyProfile,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
+    TResult Function(String token)? getCompanyProfile,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
+    required TResult Function(_GetCompanyProfile value) getCompanyProfile,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
+    TResult? Function(_GetCompanyProfile value)? getCompanyProfile,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(_GetCompanyProfile value)? getCompanyProfile,
     required TResult orElse(),
   }) =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $ProfileEventCopyWith<ProfileEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -55,6 +60,8 @@ abstract class $ProfileEventCopyWith<$Res> {
   factory $ProfileEventCopyWith(
           ProfileEvent value, $Res Function(ProfileEvent) then) =
       _$ProfileEventCopyWithImpl<$Res, ProfileEvent>;
+  @useResult
+  $Res call({String token});
 }
 
 /// @nodoc
@@ -66,67 +73,109 @@ class _$ProfileEventCopyWithImpl<$Res, $Val extends ProfileEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? token = null,
+  }) {
+    return _then(_value.copyWith(
+      token: null == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$StartedImplCopyWith<$Res> {
-  factory _$$StartedImplCopyWith(
-          _$StartedImpl value, $Res Function(_$StartedImpl) then) =
-      __$$StartedImplCopyWithImpl<$Res>;
+abstract class _$$GetCompanyProfileImplCopyWith<$Res>
+    implements $ProfileEventCopyWith<$Res> {
+  factory _$$GetCompanyProfileImplCopyWith(_$GetCompanyProfileImpl value,
+          $Res Function(_$GetCompanyProfileImpl) then) =
+      __$$GetCompanyProfileImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String token});
 }
 
 /// @nodoc
-class __$$StartedImplCopyWithImpl<$Res>
-    extends _$ProfileEventCopyWithImpl<$Res, _$StartedImpl>
-    implements _$$StartedImplCopyWith<$Res> {
-  __$$StartedImplCopyWithImpl(
-      _$StartedImpl _value, $Res Function(_$StartedImpl) _then)
+class __$$GetCompanyProfileImplCopyWithImpl<$Res>
+    extends _$ProfileEventCopyWithImpl<$Res, _$GetCompanyProfileImpl>
+    implements _$$GetCompanyProfileImplCopyWith<$Res> {
+  __$$GetCompanyProfileImplCopyWithImpl(_$GetCompanyProfileImpl _value,
+      $Res Function(_$GetCompanyProfileImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? token = null,
+  }) {
+    return _then(_$GetCompanyProfileImpl(
+      null == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$StartedImpl implements _Started {
-  const _$StartedImpl();
+class _$GetCompanyProfileImpl implements _GetCompanyProfile {
+  const _$GetCompanyProfileImpl(this.token);
+
+  @override
+  final String token;
 
   @override
   String toString() {
-    return 'ProfileEvent.started()';
+    return 'ProfileEvent.getCompanyProfile(token: $token)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$StartedImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$GetCompanyProfileImpl &&
+            (identical(other.token, token) || other.token == token));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, token);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetCompanyProfileImplCopyWith<_$GetCompanyProfileImpl> get copyWith =>
+      __$$GetCompanyProfileImplCopyWithImpl<_$GetCompanyProfileImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() started,
+    required TResult Function(String token) getCompanyProfile,
   }) {
-    return started();
+    return getCompanyProfile(token);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? started,
+    TResult? Function(String token)? getCompanyProfile,
   }) {
-    return started?.call();
+    return getCompanyProfile?.call(token);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
+    TResult Function(String token)? getCompanyProfile,
     required TResult orElse(),
   }) {
-    if (started != null) {
-      return started();
+    if (getCompanyProfile != null) {
+      return getCompanyProfile(token);
     }
     return orElse();
   }
@@ -134,34 +183,42 @@ class _$StartedImpl implements _Started {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
+    required TResult Function(_GetCompanyProfile value) getCompanyProfile,
   }) {
-    return started(this);
+    return getCompanyProfile(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
+    TResult? Function(_GetCompanyProfile value)? getCompanyProfile,
   }) {
-    return started?.call(this);
+    return getCompanyProfile?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(_GetCompanyProfile value)? getCompanyProfile,
     required TResult orElse(),
   }) {
-    if (started != null) {
-      return started(this);
+    if (getCompanyProfile != null) {
+      return getCompanyProfile(this);
     }
     return orElse();
   }
 }
 
-abstract class _Started implements ProfileEvent {
-  const factory _Started() = _$StartedImpl;
+abstract class _GetCompanyProfile implements ProfileEvent {
+  const factory _GetCompanyProfile(final String token) =
+      _$GetCompanyProfileImpl;
+
+  @override
+  String get token;
+  @override
+  @JsonKey(ignore: true)
+  _$$GetCompanyProfileImplCopyWith<_$GetCompanyProfileImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

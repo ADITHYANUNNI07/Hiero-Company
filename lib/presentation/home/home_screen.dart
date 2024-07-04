@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hiero_company/core/colors/colors.dart';
+import 'package:hiero_company/core/config/api_config.dart';
 import 'package:hiero_company/core/constants/constants.dart';
 import 'package:hiero_company/core/widgets/widget.dart';
 import 'package:hiero_company/infrastructure/models/jobmodel.dart';
@@ -42,7 +43,7 @@ class HomeScrn extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text('Hai', style: mediumsubTitle),
-                                Text('Vista Private Limited',
+                                Text(AppDevConfig.companyName,
                                     style: mediumTitle),
                               ],
                             ),

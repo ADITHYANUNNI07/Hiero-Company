@@ -1,3 +1,4 @@
+import 'package:hiero_company/core/config/api_config.dart';
 import 'package:hiero_company/core/constants/constants.dart';
 import 'package:hiero_company/presentation/job/add%20job/function/fun_add_job.dart';
 
@@ -53,7 +54,7 @@ class JobModel {
         "experience_level": experienceLevel,
         "education_level": educationLevel,
         "application_deadline": convertDateTimeString(deadline),
-        "company_name": companyName ?? '',
+        "company_name": AppDevConfig.companyName,
         "year_of_experience": yearOfExperience,
         "opportunities": opportunities,
         "candidates_hired": '',

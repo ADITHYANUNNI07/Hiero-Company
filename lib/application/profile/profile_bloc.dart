@@ -6,9 +6,7 @@ part 'profile_state.dart';
 part 'profile_bloc.freezed.dart';
 
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
-  ProfileBloc() : super(_Initial()) {
-    on<ProfileEvent>((event, emit) {
-      // TODO: implement event handler
-    });
+  ProfileBloc() : super(const ProfileState.initial()) {
+    on<_GetCompanyProfile>((event, emit) {});
   }
 }
