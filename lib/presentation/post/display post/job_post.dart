@@ -5,6 +5,7 @@ import 'package:hiero_company/core/constants/constants.dart';
 import 'package:hiero_company/core/widgets/widget.dart';
 import 'package:hiero_company/infrastructure/models/jobmodel.dart';
 import 'package:hiero_company/presentation/home/home_screen.dart';
+import 'package:intl/intl.dart';
 
 class JobPostScrn extends StatelessWidget {
   const JobPostScrn({super.key, required this.jobModel});
@@ -22,7 +23,8 @@ class JobPostScrn extends StatelessWidget {
           title: Row(
             children: [
               CircleAvatar(
-                  backgroundImage: AssetImage(jobModel.companyImageUrl ?? "")),
+                  backgroundImage: AssetImage(
+                      jobModel.companyImageUrl ?? AppImage.companyPic)),
               sizedBox5W,
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -100,7 +102,8 @@ class JobPostScrn extends StatelessWidget {
                   children: [
                     JobTileIconWidget(
                         iconData: FontAwesomeIcons.solidCalendarCheck,
-                        title: 'LAST SUBMISSION :- ${jobModel.deadline}'),
+                        title:
+                            'LAST SUBMISSION :- ${DateFormat('d MMM yyyy').format(jobModel.deadline)}'),
                     sizedBox5H,
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -121,7 +124,7 @@ class JobPostScrn extends StatelessWidget {
               ),
               sizedBox10H,
               ElevatedBtnWidget(
-                  onPressed: () {}, title: 'APPLY NOW', btnColor: colorApp),
+                  onPressed: () {}, title: 'POST STATUS', btnColor: colorApp),
               sizedBox5H
             ],
           ),

@@ -653,7 +653,7 @@ class TextFieldClass {
                     lastDate: DateTime(2100));
                 if (date != null) {
                   dateEditingConntroller.text =
-                      DateFormat('dd MMM yyyy').format(date);
+                      DateFormat('ddd MMM yyyy').format(date);
                 }
               },
               validator: (value) {
@@ -719,7 +719,7 @@ class TextFieldClass {
                     lastDate: DateTime(2100));
                 if (date != null) {
                   dateEditingConntroller.text =
-                      DateFormat('dd MMM yyyy').format(date);
+                      DateFormat('ddd MMM yyyy').format(date);
                 }
               },
               validator: (value) {

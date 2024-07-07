@@ -9,6 +9,8 @@ import 'package:hiero_company/core/constants/constants.dart';
 import 'package:hiero_company/core/widgets/widget.dart';
 import 'package:hiero_company/infrastructure/models/jobmodel.dart';
 import 'package:hiero_company/presentation/chat/chat_screen.dart';
+import 'package:hiero_company/presentation/home/widget/home_widget.dart';
+import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 
 class HomeScrn extends StatelessWidget {
@@ -359,8 +361,8 @@ class JobPostContainerWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CircleAvatar(
-                      backgroundImage:
-                          AssetImage(jobModel.companyImageUrl ?? ''),
+                      backgroundImage: AssetImage(
+                          jobModel.companyImageUrl ?? AppImage.companyPic),
                       radius: 30),
                   sizedBox10W,
                   SizedBox(
@@ -384,8 +386,9 @@ class JobPostContainerWidget extends StatelessWidget {
                     ),
                   ),
                   const Spacer(),
-                  const TimeDurationContainerWidget(
-                    title: 'NOW',
+                  TimeDurationContainerWidget(
+                    title:
+                        getTimeDifference(jobModel.postedOn ?? DateTime.now()),
                     color: colorApp,
                     lightColor: colorAppLight,
                   )
@@ -414,7 +417,8 @@ class JobPostContainerWidget extends StatelessWidget {
                   JobSDateExpWidget(
                       iconData: FontAwesomeIcons.play,
                       title: 'START DATE',
-                      subtitle: jobModel.startingDate,
+                      subtitle: DateFormat('d MMM yyyy')
+                          .format(jobModel.startingDate),
                       color: colorApp),
                   JobSDateExpWidget(
                       iconData: FontAwesomeIcons.calendarDay,

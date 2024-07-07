@@ -4,7 +4,7 @@ import 'package:hiero_company/application/job/job_bloc.dart';
 import 'package:hiero_company/core/colors/colors.dart';
 import 'package:hiero_company/core/config/api_config.dart';
 import 'package:hiero_company/infrastructure/models/jobmodel.dart';
-import 'package:hiero_company/presentation/job/add%20job/add_job.dart';
+import 'package:hiero_company/presentation/post/add%20post/add_job.dart';
 import 'package:hiero_company/presentation/signup/signup_screen.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -30,9 +30,11 @@ addJobFUN(GlobalKey<FormState> jobFormkey, List<String> skillList,
               ? 'Entery-level'
               : experienceLevelController.text.trim(),
           educationLevel: educationLevelController.text.trim(),
-          deadline: applicationDeadlineController.text.trim(),
+          deadline: DateFormat('dd MMM yyyy')
+              .parse(applicationDeadlineController.text.trim()),
           opportunities: opportunitiesController.text.trim(),
-          startingDate: startingDateController.text.trim(),
+          startingDate: DateFormat('dd MMM yyyy')
+              .parse(startingDateController.text.trim()),
           yearOfExperience: yearOfExperienceController.text.trim());
       context
           .read<JobBloc>()
@@ -53,15 +55,14 @@ String capitalize(String input) {
   return input[0].toUpperCase() + input.substring(1).toLowerCase();
 }
 
-String convertDateTimeString(String dateString) {
-  DateTime parsedDate = DateFormat('dd MMM yyyy').parse(dateString);
+String convertDateTimeString(DateTime date) {
   DateTime dateWithTime = DateTime(
-    parsedDate.year,
-    parsedDate.month,
-    parsedDate.day,
-    parsedDate.hour,
-    parsedDate.minute,
-    parsedDate.second,
+    date.year,
+    date.month,
+    date.day,
+    date.hour,
+    date.minute,
+    date.second,
   );
   DateTime utcDate = dateWithTime.toUtc();
   String formattedDate = utcDate.toIso8601String();

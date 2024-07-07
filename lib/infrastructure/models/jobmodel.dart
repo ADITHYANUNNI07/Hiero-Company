@@ -1,9 +1,10 @@
 import 'package:hiero_company/core/config/api_config.dart';
 import 'package:hiero_company/core/constants/constants.dart';
-import 'package:hiero_company/presentation/job/add%20job/function/fun_add_job.dart';
+import 'package:hiero_company/presentation/post/add%20post/function/fun_add_job.dart';
+import 'package:intl/intl.dart';
 
 class JobModel {
-  final String? id;
+  final int? id;
   final String title;
   final String type;
   final String description;
@@ -14,13 +15,14 @@ class JobModel {
   final List<String> skills;
   final String experienceLevel;
   final String educationLevel;
-  final String deadline;
+  final DateTime deadline;
   final String? companyName;
   final String yearOfExperience;
   final String opportunities;
   final String? candidateshired;
-  final String startingDate;
+  final DateTime startingDate;
   final String? companyImageUrl;
+  final DateTime? postedOn;
   JobModel({
     this.id,
     required this.title,
@@ -40,6 +42,7 @@ class JobModel {
     this.candidateshired,
     required this.startingDate,
     this.companyImageUrl,
+    this.postedOn,
   });
   Map<String, String> toJson() => {
         "title": title,
@@ -62,25 +65,25 @@ class JobModel {
       };
   factory JobModel.fromJson(Map<String, dynamic> json) {
     return JobModel(
-      id: json['id'],
-      title: json['title'] ?? '',
-      type: json['type'] ?? '',
-      description: json['description'] ?? '',
-      requirements: json['requirements'] ?? '',
-      location: json['location'] ?? '',
-      employmentType: json['employment_type'] ?? '',
-      salary: json['salary'] ?? '',
-      skills: List<String>.from(json['skills_required'] ?? []),
-      experienceLevel: json['experience_level'] ?? '',
-      educationLevel: json['education_level'] ?? '',
-      deadline: json['application_deadline'] ?? '',
-      companyName: json['company_name'],
-      yearOfExperience: json['year_of_experience'] ?? '',
-      opportunities: json['opportunities'] ?? '',
-      candidateshired: json['candidates_hired'],
-      startingDate: json['starting_date'] ?? '',
-      companyImageUrl: json['company_image_url'],
-    );
+        id: json['id'],
+        title: json['title'] ?? '',
+        type: json['type'] ?? '',
+        description: json['description'] ?? '',
+        requirements: json['requirements'] ?? '',
+        location: json['location'] ?? '',
+        employmentType: json['employment_type'] ?? '',
+        salary: json['salary'] ?? '',
+        skills: List<String>.from(json['skills_required'] ?? []),
+        experienceLevel: json['experience_level'] ?? '',
+        educationLevel: json['education_level'] ?? '',
+        deadline: DateTime.parse(json['application_deadline'] ?? ''),
+        companyName: json['company_name'],
+        yearOfExperience: json['year_of_experience'] ?? '',
+        opportunities: json['opportunities'] ?? '',
+        candidateshired: json['candidates_hired'],
+        startingDate: DateTime.parse(json['starting_date'] ?? ''),
+        companyImageUrl: json['company_image_url'],
+        postedOn: DateTime.parse(json['posted_on']));
   }
 }
 
@@ -102,8 +105,13 @@ JobModel jobModel = JobModel(
     ],
     experienceLevel: 'Advance-level',
     educationLevel: 'BCA Computer Science',
-    deadline: '21 Sept 2024',
+    deadline: parseDateString("21 Sep 2024"),
     candidateshired: '5',
     opportunities: '28',
-    startingDate: 'Immediately',
+    startingDate: parseDateString("21 Sep 2024"),
     yearOfExperience: '1-5');
+
+DateTime parseDateString(String dateString) {
+  final DateFormat formatter = DateFormat('d MMM yyyy');
+  return formatter.parse(dateString);
+}

@@ -9,8 +9,9 @@ import 'package:hiero_company/core/provider/provider.dart';
 import 'package:hiero_company/core/widgets/widget.dart';
 import 'package:hiero_company/core/widgets/textfields.dart';
 import 'package:hiero_company/infrastructure/models/jobmodel.dart';
-import 'package:hiero_company/presentation/job/add%20job/function/fun_add_job.dart';
+import 'package:hiero_company/presentation/post/add%20post/function/fun_add_job.dart';
 import 'package:hiero_company/presentation/signup/signup_screen.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 TextEditingController profileNameController = TextEditingController();
@@ -45,7 +46,8 @@ class _AddJobInternPostScrnState extends State<AddJobInternPostScrn> {
       descriptionCompanyController =
           TextEditingController(text: model.description);
       reqirementController = TextEditingController(text: model.requirements);
-      startingDateController = TextEditingController(text: model.startingDate);
+      startingDateController = TextEditingController(
+          text: DateFormat('dd MMM yyyy').format(model.startingDate));
       locationEditingControllerNotifier.value =
           TextEditingController(text: model.location);
       educationLevelController =
@@ -53,8 +55,8 @@ class _AddJobInternPostScrnState extends State<AddJobInternPostScrn> {
       employmentTypeController =
           TextEditingController(text: model.employmentType);
       salaryController = TextEditingController(text: model.salary);
-      applicationDeadlineController =
-          TextEditingController(text: model.deadline);
+      applicationDeadlineController = TextEditingController(
+          text: DateFormat('dd MMM yyyy').format(model.deadline));
       opportunitiesController =
           TextEditingController(text: model.opportunities);
       yearOfExperienceController =

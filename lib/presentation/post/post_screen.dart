@@ -1,25 +1,38 @@
 import 'package:animated_segmented_tab_control/animated_segmented_tab_control.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_sliding_box/flutter_sliding_box.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hiero_company/application/job/job_bloc.dart';
 import 'package:hiero_company/core/colors/colors.dart';
+import 'package:hiero_company/core/config/api_config.dart';
 import 'package:hiero_company/core/constants/constants.dart';
 import 'package:hiero_company/core/provider/provider.dart';
-import 'package:hiero_company/infrastructure/models/jobmodel.dart';
 import 'package:hiero_company/presentation/home/home_screen.dart';
-import 'package:hiero_company/presentation/job/add%20job/add_job.dart';
-import 'package:hiero_company/presentation/job/add%20job/widget/bottomsheet.dart';
+import 'package:hiero_company/presentation/post/add%20post/add_job.dart';
+import 'package:hiero_company/presentation/post/widget/widget.dart';
 import 'package:provider/provider.dart';
 import 'package:redacted/redacted.dart';
 
-class PostJoborInternScrn extends StatelessWidget {
+class PostJoborInternScrn extends StatefulWidget {
   const PostJoborInternScrn({super.key});
+
+  @override
+  State<PostJoborInternScrn> createState() => _PostJoborInternScrnState();
+}
+
+class _PostJoborInternScrnState extends State<PostJoborInternScrn> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<JobBloc>().add(JobEvent.getAllJob(AppDevConfig.accessToken));
+  }
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -93,23 +106,35 @@ class PostJoborInternScrn extends StatelessWidget {
                 child: TabBarView(
                   physics: const BouncingScrollPhysics(),
                   children: [
-                    InkWell(
-                        onLongPress: () {
-                          showSlidingBox(
-                              context: context,
-                              box: SlidingBox(
-                                maxHeight: size.height * 0.25,
-                                color: Colors.white,
-                                style: BoxStyle.shadow,
-                                draggableIconBackColor: Colors.transparent,
-                                body: bottomSheetJobOrInternship(
-                                    context: context, jobmodel: jobModel),
-                              ));
-                        },
-                        child: JobPostContainerWidget(
-                          size: size,
-                          jobModel: jobModel,
-                        )),
+                    BlocBuilder<JobBloc, JobState>(
+                      builder: (context, state) {
+                        return state.when(
+                            initial: () => ListView(
+                                  children: List.generate(
+                                    10,
+                                    (index) =>
+                                        listOfPostRedactedWidget(context, size),
+                                  ),
+                                ),
+                            loading: () => ListView(
+                                  children: List.generate(
+                                    10,
+                                    (index) =>
+                                        listOfPostRedactedWidget(context, size),
+                                  ),
+                                ),
+                            loggedIn: (result) => ListView(
+                                  children: List.generate(
+                                    result.length,
+                                    (index) => listOfPostWidget(
+                                        context, size, result[index]),
+                                  ),
+                                ),
+                            error: (message) => Text(message)
+                            //  LottieBuilder.asset('assets/animations/404.json'),
+                            );
+                      },
+                    ),
                     InternshipPostWidgetRedacted(size: size).redacted(
                       context: context,
                       redact: true,

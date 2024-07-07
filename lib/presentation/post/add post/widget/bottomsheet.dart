@@ -4,7 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hiero_company/core/colors/colors.dart';
 import 'package:hiero_company/core/constants/constants.dart';
 import 'package:hiero_company/infrastructure/models/jobmodel.dart';
-import 'package:hiero_company/presentation/job/add%20job/add_job.dart';
+import 'package:hiero_company/presentation/post/add%20post/add_job.dart';
 
 Widget bottomSheetJobOrInternship({context, required JobModel jobmodel}) {
   return Column(
@@ -32,7 +32,7 @@ Widget bottomSheetJobOrInternship({context, required JobModel jobmodel}) {
             ),
           ),
           image: Image.asset(
-            jobmodel.companyImageUrl ?? '',
+            jobmodel.companyImageUrl ?? AppImage.companyPic,
             fit: BoxFit.cover,
           ),
           onPressed: () {},

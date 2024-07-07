@@ -37,7 +37,10 @@ class JobRepository {
     final response = await baseApiService.getApiCall(
         accessToken, ApiEndpoints.getAllJobEndpoint);
     if (response != null) {
-      if (response.statusCode == 201 && response.statusCode == 200) {
+      print(response.data['data']);
+      if (response.data['status_code'] == 201 ||
+          response.data['status_code'] == 200) {
+        log(response.data['data'].toString());
         return response.data['data']
             .map((map) => JobModel.fromJson(map))
             .toList();
@@ -50,7 +53,7 @@ class JobRepository {
         }
         print(errorMessage);
         print('Get Job failed with status code: ${response.statusCode}');
-        return errorMessage;
+        return response.data['error'];
       }
     } else {
       return 'Sorry, Server is not reachable 🥲';
@@ -80,8 +83,8 @@ class JobRepository {
   }
 
   Future<dynamic> deleteJob(JobModel jobmodel, String accessToken) async {
-    final response = await baseApiService.deleteApiCall(accessToken,
-        ApiEndpoints.deleteJobEndpoints, int.parse(jobmodel.id ?? ''));
+    final response = await baseApiService.deleteApiCall(
+        accessToken, ApiEndpoints.deleteJobEndpoints, jobmodel.id ?? 0);
     if (response != null) {
       if (response.statusCode == 201 && response.statusCode == 200) {
         return 'success';
